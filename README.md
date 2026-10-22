@@ -129,6 +129,33 @@ curl https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/CL
 
 This repository includes a committed Cursor project rule ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)) so the same guidelines apply when you open the project in Cursor. See **[CURSOR.md](CURSOR.md)** for setup, using the rule in other projects, and how this relates to Claude Code.
 
+## Using with Codex, OpenCode, or Gemini CLI
+
+[`AGENTS.md`](AGENTS.md) contains the same guidelines as `CLAUDE.md` under the filename these tools read.
+
+**Codex** and **OpenCode** read `AGENTS.md` from the project root. Per-project:
+```bash
+curl -o AGENTS.md https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/AGENTS.md
+```
+If the project already has an `AGENTS.md`, append instead of overwriting (`curl ... >> AGENTS.md`, as in Option B above).
+
+For all projects, save it as a global instruction file:
+```bash
+# Codex
+mkdir -p ~/.codex && curl -o ~/.codex/AGENTS.md https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/AGENTS.md
+# OpenCode
+mkdir -p ~/.config/opencode && curl -o ~/.config/opencode/AGENTS.md https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/AGENTS.md
+```
+
+**Gemini CLI** reads `GEMINI.md` by default. Either save the file as `GEMINI.md` (or `~/.gemini/GEMINI.md` for all projects), or tell Gemini CLI to also read `AGENTS.md` in `.gemini/settings.json`:
+```json
+{
+  "context": {
+    "fileName": ["AGENTS.md", "GEMINI.md"]
+  }
+}
+```
+
 ## Key Insight
 
 From Andrej:
