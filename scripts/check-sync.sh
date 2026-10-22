@@ -8,6 +8,7 @@ body() { sed -n '/^\*\*Tradeoff:\*\*/,$p' "$1"; }
 
 source_file=CLAUDE.md
 copies=(
+  AGENTS.md
   skills/karpathy-guidelines/SKILL.md
   .cursor/rules/karpathy-guidelines.mdc
 )

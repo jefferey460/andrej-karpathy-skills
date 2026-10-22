@@ -129,6 +129,33 @@ curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/
 
 本仓库包含一个已提交的 Cursor 项目规则 ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc))，因此在 Cursor 中打开项目时同样适用这些指南。详情请参见 **[CURSOR.md](CURSOR.md)**，包括如何在其他项目中使用该规则，以及它与 Claude Code 的关系。
 
+## 在 Codex、OpenCode 或 Gemini CLI 中使用
+
+[`AGENTS.md`](AGENTS.md) 与 `CLAUDE.md` 内容相同，只是使用了这些工具会读取的文件名。
+
+**Codex** 和 **OpenCode** 会读取项目根目录下的 `AGENTS.md`。单个项目：
+```bash
+curl -o AGENTS.md https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/AGENTS.md
+```
+如果项目中已有 `AGENTS.md`，请追加而不是覆盖（`curl ... >> AGENTS.md`，同上文选项 B）。
+
+对所有项目生效，可保存为全局指令文件：
+```bash
+# Codex
+mkdir -p ~/.codex && curl -o ~/.codex/AGENTS.md https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/AGENTS.md
+# OpenCode
+mkdir -p ~/.config/opencode && curl -o ~/.config/opencode/AGENTS.md https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/AGENTS.md
+```
+
+**Gemini CLI** 默认读取 `GEMINI.md`。可以将文件保存为 `GEMINI.md`（或 `~/.gemini/GEMINI.md` 以对所有项目生效），也可以在 `.gemini/settings.json` 中让 Gemini CLI 同时读取 `AGENTS.md`：
+```json
+{
+  "context": {
+    "fileName": ["AGENTS.md", "GEMINI.md"]
+  }
+}
+```
+
 ## 核心洞察
 
 来自 Andrej：
